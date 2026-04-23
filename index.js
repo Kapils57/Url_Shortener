@@ -1,10 +1,15 @@
 const express = require('express')
+const cors = require("cors");
 const {readFile, writeFile} = require("fs/promises")
 const path = require('path')
-const { json } = require('stream/consumers')
-const app = express()
 
+const app = express()
+app.use(cors())
 app.use(express.json())
+
+
+
+const BASE_URL = "https://url-shortener-1-n2s3.onrender.com";
 
 const serve = async (res, filePath, contentType) => {
     try {
@@ -74,7 +79,7 @@ app.post('/shorten', async (req, res) => {
 
     if(links[shortCode]){
 
-        return res.status(400).send({message:"link already exists", shortUrl: `http://localhost:3000/${shortCode}`})
+        return res.status(400).send({message:"link already exists", shortUrl: `${BASE_URL}/${shortCode}`})
     }
 
     links[shortCode] = url
@@ -83,7 +88,7 @@ app.post('/shorten', async (req, res) => {
     
 
 
-    res.status(200).send({ message: "success", shortUrl: `http://localhost:3000/${shortCode}` })
+    res.status(200).send({ message: "success", shortUrl: `${BASE_URL}/${shortCode}` })
 })
 
 app.get('/:shortCode', async (req, res) => {
@@ -98,5 +103,6 @@ app.get('/:shortCode', async (req, res) => {
 
     return res.status(200).redirect(url)
 })
+const PORT = process.env.PORT || 3000;
 
-app.listen(3000, () => console.log("Server running on port 3000"))
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`))
