@@ -12,7 +12,7 @@ form.addEventListener("submit", async (e)=>{
     // const shortCode = document.getElementById("shortCode")
     // console.log(url.value, shortCode.value)
 
-    const response = await fetch('https://url-shortener-1-n2s3.onrender.com/shorten', {
+    const response = await fetch('https://url-shortener-2-iek5.onrender.com/shorten', {
         method:"POST" ,
         headers:{
             "Content-Type":"application/json"
