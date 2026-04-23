@@ -9,7 +9,7 @@ app.use(express.json())
 
 
 
-const BASE_URL = "https://url-shortener-1-n2s3.onrender.com";
+const BASE_URL = "https://url-shortener-2-iek5.onrender.com";
 
 const serve = async (res, filePath, contentType) => {
     try {
